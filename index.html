@@ -1,0 +1,53 @@
+<!-- (c) 2017 Objective Systems Integrators, Inc. (MYCOM OSI) All Rights Reserved.
+*
+*   iFrame Container Custom Element Component demo
+*   <mycomosi-iframe>
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    <script src="dist/jason.js"></script>
+
+    <title>mycomosi jason demo</title>
+</head>
+<body>
+<div style="height: 60px;"></div>
+<div>
+    <script type="text/javascript">
+
+        let jsons = new jason(fetch);
+        jsons.loadJsons([
+            {path : 'json/theme.json', id : 'theme'},
+            {path : 'json/lang.json', id : 'i18n'}
+        ],
+        ()=>{
+            console.log(jsons.getProperty('theme', 'GridHoverColor','red'));
+            console.log(jsons.getProperty('i18n', 'i18n_apex','blabla'));
+        });
+
+        // loading with no array
+        jsons.loadJsons(
+            {path : 'json/lang.json', id : 'i18n2'}
+        ,
+        ()=>{
+            console.log(jsons.getProperty('i18n2', 'i18n_apex','blabla'));
+            console.log(jsons.getProperty('theme', 'GridHoverColor','red'));
+        });
+
+        // loading with only path
+        jsons.loadJsons('json/lang.json',        
+        ()=>{
+            console.log(jsons.getProperty('lang', 'i18n_apex','blabla'));
+            console.log(jsons.getProperty('theme', 'GridHoverColor','red'));
+        });
+
+
+
+    </script>
+</div>
+</body>
+</html>
