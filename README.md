@@ -1,6 +1,7 @@
 # Aeson (father of [Jason](https://en.wikipedia.org/wiki/Jason))
 
 [![Build Status](https://travis-ci.org/mycomosi/aeson.svg?branch=master)](https://travis-ci.org/mycomosi/aeson)
+[![Coverage Status](https://coveralls.io/repos/github/mycomosi/aeson/badge.svg?branch=master)](https://coveralls.io/github/mycomosi/aeson?branch=master)
 
 A simple javascript library to dynamically load json properties files
 
