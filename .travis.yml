@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - "7"
+after_success: npm run coverage
+deploy:
+  provider: npm
+  email: "ronan.quillevere@gmail.com"
+  api_key: "a451a81d-de20-4cbe-af20-4626dbbb32a0"
