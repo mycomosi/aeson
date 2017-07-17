@@ -1,6 +1,6 @@
 {
   "name": "aeson",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple javascript library to dynamically load json properties files",
   "main": "index.js",
   "module": "dist/aeson.es.js",
@@ -12,11 +12,11 @@
     "dist/aeson.umd.js"
   ],
   "scripts": {
-      "build": "./node_modules/.bin/rollup -c rollup.js && ./node_modules/.bin/rollup -c rollup.iife.js && ./node_modules/.bin/rollup -c rollup.es.js",
-      "_transpile-test": "./node_modules/.bin/rollup -c rollup.test.js",
-      "test": "cross-env NODE_ENV=test npm run _transpile-test && nyc mocha",
-      "coverage": "nyc report --reporter=text-lcov | coveralls",
-      "generate-doc": "./node_modules/.bin/jsdoc -c jsdoc.json"
+    "build": "./node_modules/.bin/rollup -c rollup.js && ./node_modules/.bin/rollup -c rollup.iife.js && ./node_modules/.bin/rollup -c rollup.es.js",
+    "_transpile-test": "./node_modules/.bin/rollup -c rollup.test.js",
+    "test": "cross-env NODE_ENV=test npm run _transpile-test && nyc mocha",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "generate-doc": "./node_modules/.bin/jsdoc -c jsdoc.json"
   },
   "repository": {
     "type": "git",
