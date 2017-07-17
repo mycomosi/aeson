@@ -1,6 +1,6 @@
-# jason
+# Aeson (father of [Jason](https://en.wikipedia.org/wiki/Jason))
 
-[![Build Status](https://travis-ci.org/mycomosi/jason.svg?branch=master)](https://travis-ci.org/mycomosi/jason)
+[![Build Status](https://travis-ci.org/mycomosi/aeson.svg?branch=master)](https://travis-ci.org/mycomosi/aeson)
 
 A simple javascript library to dynamically load json properties files
 
@@ -8,7 +8,7 @@ A simple javascript library to dynamically load json properties files
 Usage examples
 
 ```javascript
-let jsons = new jason(fetch);
+let jsons = new aeson(fetch);
 jsons.loadJsons([
     {path : 'json/theme.json', id : 'theme'},
     {path : 'json/lang.json', id : 'i18n'}

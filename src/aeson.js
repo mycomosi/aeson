@@ -4,7 +4,7 @@
 *
 */
 
-export default class Jason {
+export default class Aeson {
 
     constructor(fetch){
         // Possibly in the future pass another way of making backend calls than fetch

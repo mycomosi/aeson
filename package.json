@@ -3,13 +3,13 @@
   "version": "0.0.1",
   "description": "A simple javascript library to dynamically load json properties files",
   "main": "index.js",
-  "module": "dist/jason.es.js",
+  "module": "dist/aeson.es.js",
   "files": [
-    "dist/jason.cjs.js",
-    "dist/jason.es.js",
-    "dist/jason.js",
-    "dist/jason.min.js",
-    "dist/jason.umd.js"
+    "dist/aeson.cjs.js",
+    "dist/aeson.es.js",
+    "dist/aeson.js",
+    "dist/aeson.min.js",
+    "dist/aeson.umd.js"
   ],
   "scripts": {
       "build": "./node_modules/.bin/rollup -c rollup.js && ./node_modules/.bin/rollup -c rollup.iife.js && ./node_modules/.bin/rollup -c rollup.es.js",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mycomosi/jason.git"
+    "url": "git+https://github.com/mycomosi/aeson.git"
   },
   "nyc": {
     "reporter": [
@@ -30,9 +30,9 @@
   },
   "author": "Ronan Quillevere",
   "bugs": {
-    "url": "https://github.com/mycomosi/jason/issues"
+    "url": "https://github.com/mycomosi/aeson/issues"
   },
-  "homepage": "https://github.com/mycomosi/jason#readme",
+  "homepage": "https://github.com/mycomosi/aeson#readme",
   "license": "MIT",
   "devDependencies": {
     "babel-plugin-istanbul": "^4.0.0",

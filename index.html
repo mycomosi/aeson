@@ -10,16 +10,16 @@
   <meta name="viewport"
         content="width=device-width,minimum-scale=1,initial-scale=1">
 
-    <script src="dist/jason.js"></script>
+    <script src="dist/aeson.js"></script>
 
-    <title>mycomosi jason demo</title>
+    <title>mycomosi aeson demo</title>
 </head>
 <body>
 <div style="height: 60px;"></div>
 <div>
     <script type="text/javascript">
 
-        let jsons = new jason(fetch);
+        let jsons = new aeson(fetch);
         jsons.loadJsons([
             {path : 'json/theme.json', id : 'theme'},
             {path : 'json/lang.json', id : 'i18n'}
@@ -39,7 +39,7 @@
         });
 
         // loading with only path
-        jsons.loadJsons('json/lang.json',        
+        jsons.loadJsons('json/lang.json',
         ()=>{
             console.log(jsons.getProperty('lang', 'i18n_apex','blabla'));
             console.log(jsons.getProperty('theme', 'GridHoverColor','red'));

@@ -4,10 +4,10 @@ import eslint from 'rollup-plugin-eslint';
 import resolve from 'rollup-plugin-node-resolve';
 
 export default {
-    entry: 'src/jason',
-    dest: 'dist/jason.js',
+    entry: 'src/aeson',
+    dest: 'dist/aeson.js',
     format: 'iife',
-    moduleName: 'jason',
+    moduleName: 'aeson',
     plugins: [
         resolve(),
         eslint(),
