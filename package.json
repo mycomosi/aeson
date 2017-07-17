@@ -1,5 +1,5 @@
 {
-  "name": "jason",
+  "name": "aeson",
   "version": "0.0.1",
   "description": "A simple javascript library to dynamically load json properties files",
   "main": "index.js",
