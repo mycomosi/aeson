@@ -68,9 +68,19 @@ export default class Aeson {
         }
     }
 
+    _noCache(url){
+        let d = Date.now();
+        let sep = '?';
+
+        if (url.indexOf('?')!== -1) {
+            sep = '&';
+        }
+        return `${url}${sep}nc=${d}`;
+    }
+
     _fetchAndAssignInMap(spec){
         this._list.push(
-            this._fetch.call(window, spec.path)
+            this._fetch.call(window, this._noCache(spec.path))
             .then((response) => {
                 return response.json();
             })

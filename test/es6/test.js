@@ -160,7 +160,7 @@ describe('Aeson', function () {
         aeson.loadJsons(path, null);
 
         // Then
-        sinon.assert.calledWith(fetch, path);
+        sinon.assert.calledWith(fetch, sinon.match.string.and(sinon.match(new RegExp(path.replace('/','\\/').replace('.','\\.') + '\\?nc=\\d+'))));
     });
 
 
