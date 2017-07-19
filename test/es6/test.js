@@ -99,7 +99,14 @@ describe('Aeson', function () {
         checkValues(aeson, 'id2');
     });
 
+    it('should return the right json values when passing an array of strings', function () {
+        // Given
+        let aeson = new Aeson(fakeFetchter);
+        aeson.loadJsons(['theme.json', 'lang.json'], null);
 
+        checkValues(aeson, 'theme');
+        checkValues(aeson, 'lang');
+    });
 
 
     it('should throw error if the id for which we search a property is not set in the map ', function () {
@@ -151,7 +158,7 @@ describe('Aeson', function () {
         // Then
     });
 
-    it('should load the json on another url', function () {
+    it('should load the json on another url with no cache param', function () {
         // Given
         let fetch = sinon.spy(fakeFetchter);
         let aeson = new Aeson(fetch);
@@ -161,6 +168,18 @@ describe('Aeson', function () {
 
         // Then
         sinon.assert.calledWith(fetch, sinon.match.string.and(sinon.match(new RegExp(path.replace('/','\\/').replace('.','\\.') + '\\?nc=\\d+'))));
+    });
+
+    it('should load the json on another url with no cache param', function () {
+        // Given
+        let fetch = sinon.spy(fakeFetchter);
+        let aeson = new Aeson(fetch);
+        let path = 'json/theme.json?param=1';
+        // When
+        aeson.loadJsons(path, null);
+
+        // Then
+        sinon.assert.calledWith(fetch, sinon.match.string.and(sinon.match(new RegExp(path.replace('/','\\/').replace('.','\\.').replace('?','\\?') + '&nc=\\d+'))));
     });
 
 

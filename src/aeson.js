@@ -90,19 +90,36 @@ export default class Aeson {
         );
     }
 
-    _transformParams(jsonsSpecs){
+    _transformParams(params){
         //if passing only one spec convert it into array for easier syntas
-        if (jsonsSpecs.constructor !== Array && typeof jsonsSpecs === 'object')
+        if (params.constructor !== Array && typeof params === 'object')
         {
-            return [jsonsSpecs];
+            return [params];
         }
         //just passing a path
-        else if (typeof jsonsSpecs === 'string'){
-            return [{path:jsonsSpecs}];
+        else if (typeof params === 'string'){
+            return [this._paramFromString(params)];
         }
         else {
-            return jsonsSpecs;
+            return this._transformArray(params);
         }
+    }
+
+    _paramFromString(paramAsString){
+        return {path:paramAsString};
+    }
+
+    _transformArray(params){
+        let out = [];
+        for (let p of params) {
+            if (typeof p === 'string'){
+                out.push(this._paramFromString(p));
+            }
+            else {
+                out.push(p);
+            }
+        }
+        return out;
     }
 
     /**

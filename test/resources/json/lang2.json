@@ -1,0 +1,10 @@
+{
+	"i18n_apex":										"mycomosi-wc-apex",
+	"i18n_topo":										"Topology Viewer",
+	"i18n_apex_text":								"Topology Viewer Custom Element",
+	"i18n_required_objs":						"Graph missing required Objects",
+	"i18n_empty_elements":          "Vertices[] must contain elements",
+	"i18n_vertices_required_objs":	"Vertices - some required Objects are missing",
+	"i18n_edges_required_objs":			"Edges - some required Objects are missing",
+	"i18n_discovery_failed" : 			"Error while discovering neighbours"
+}
