@@ -5,17 +5,16 @@ import uglify from 'rollup-plugin-uglify';
 import resolve from 'rollup-plugin-node-resolve';
 
 export default {
-    entry: 'src/aeson',
-    moduleName: 'aeson',
+    input: 'src/aeson',
     plugins: [
         resolve(),
         eslint(),
         babel(babelrc()),
         uglify()
     ],
-    targets: [
-        { dest: 'dist/aeson.cjs.js', format: 'cjs' },
-        { dest: 'dist/aeson.umd.js', format: 'umd' },
-        { dest: 'dist/aeson.min.js', format: 'iife' }
+    output: [
+        { name: 'aeson', file: 'dist/aeson.cjs.js', format: 'cjs' },
+        { name: 'aeson', file: 'dist/aeson.umd.js', format: 'umd' },
+        { name: 'aeson', file: 'dist/aeson.min.js', format: 'iife' }
       ]
 };

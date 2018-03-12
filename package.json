@@ -35,7 +35,7 @@
   "homepage": "https://github.com/mycomosi/aeson#readme",
   "license": "MIT",
   "devDependencies": {
-    "babel-plugin-istanbul": "^4.0.0",
+    "babel-plugin-istanbul": "^4.1.6",
     "babel-preset-es2015-rollup": "^3.0.0",
     "babelrc-rollup": "^3.0.0",
     "chai": "^3.5.0",
@@ -45,12 +45,13 @@
     "jsdoc": "^3.4.3",
     "mocha": "^3.2.0",
     "nyc": "^10.1.2",
-    "rollup": "^0.41.4",
+    "rollup": "^0.56.5",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-eslint": "^3.0.0",
     "rollup-plugin-multi-entry": "^2.0.1",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-uglify": "^1.0.1",
     "sinon": "^1.17.7"
-  }
+  },
+  "dependencies": {}
 }

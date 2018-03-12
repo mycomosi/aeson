@@ -15,12 +15,13 @@ describe('Aeson', function () {
                     backgroundColor : 'yellow'
                 }
             },
-            other : '#ffffff'
+            other : '#ffffff',
+            empty : ''
         };
 
         global.window = {}; //for fetch
 
-        fakeFetchter = function(path){
+        fakeFetchter = function(){
             return {
                 then : function(fn){
                     let response = {
@@ -49,20 +50,35 @@ describe('Aeson', function () {
     });
 
     let checkValues = function(aeson, id){
-        // When
-        let gridColor = aeson.getProperty(id, 'grid.color', 'red');
-        let gridBackColor = aeson.getProperty(id, 'grid.row.backgroundColor', 'red');
-        let other = aeson.getProperty(id, 'other', 'red');
-        let notDef = aeson.getProperty(id, 'notDef', 'red');
-        let other2 = aeson.getProperty(id, 'other');
+        // WHEN
+        let isNotDefFound = aeson.isPropertySet(id, 'notDef');
+        let isEmptyFound = aeson.isPropertySet(id, 'empty');
 
-        // Then
+        // basic test
+        let other = aeson.getProperty(id, 'other', 'red');
+        // one level depth
+        let gridColor = aeson.getProperty(id, 'grid.color', 'red');
+        // two levels depth
+        let gridBackColor = aeson.getProperty(id, 'grid.row.backgroundColor', 'red');
+        //Node defined in theme
+        let notDef = aeson.getProperty(id, 'notDef', 'red');
+        // Not passing default value to existing prop
+        let other2 = aeson.getProperty(id, 'other');
+        // Empty valus is a correct value
+        let empty = aeson.getProperty(id, 'empty', 'notEmpty');
+
+
+        // THEN
+        expect(isNotDefFound).to.equal(false);
+        expect(isEmptyFound).to.equal(true);
+
+        expect(other).to.equal('#ffffff');
         expect(gridColor).to.equal('black');
         expect(gridBackColor).to.equal('yellow');
-        expect(other).to.equal('#ffffff');
-        expect(notDef).to.equal('red');
 
+        expect(notDef).to.equal('red');
         expect(other2).to.equal('#ffffff');
+        expect(empty).to.equal('');
     };
 
     it('should return the right json values when passing only path', function () {
@@ -109,24 +125,35 @@ describe('Aeson', function () {
     });
 
 
-    it('should throw error if the id for which we search a property is not set in the map ', function () {
+    it('should throw error if the id for which we search a property is not set in the map when testing existence', function () {
         // Given
         let aeson = new Aeson(fakeFetchter);
         aeson.loadJsons('theme.json', null);
 
         // When
-        expect(aeson.getProperty.bind(aeson, 'x', 'notDef')).to.throw('No json load with following id x and no defaultValue');
+        expect(aeson.isPropertySet.bind(aeson, 'x')).to.throw('No json loaded with following id x');
 
         // Then
     });
 
-    it('should throw error the key does not exist and no default value is given', function () {
+    it('should throw error if the id for which we search a property is not set in the map when getting the value', function () {
         // Given
         let aeson = new Aeson(fakeFetchter);
         aeson.loadJsons('theme.json', null);
 
         // When
-        expect(aeson.getProperty.bind(aeson, 'theme', 'notDef')).to.throw('Property was not found and no defaultValue');
+        expect(aeson.getProperty.bind(aeson, 'x', 'notDef')).to.throw('No json loaded with following id x and no defaultValue was provided');
+
+        // Then
+    });
+
+    it('should throw error if the key does not exist and no default value is given', function () {
+        // Given
+        let aeson = new Aeson(fakeFetchter);
+        aeson.loadJsons('theme.json', null);
+
+        // When
+        expect(aeson.getProperty.bind(aeson, 'theme', 'notDef')).to.throw('Property notDef was not found in json theme and no defaultValue was provided');
 
         // Then
     });
@@ -153,7 +180,7 @@ describe('Aeson', function () {
         let aeson = new Aeson(fetch);
 
         // When
-        expect(aeson.getProperty.bind(aeson, 'x', 'other')).to.throw('No json load with following id x and no defaultValue');
+        expect(aeson.getProperty.bind(aeson,  'x', 'other')).to.throw('No json loaded with following id x and no defaultValue was provided');
 
         // Then
     });

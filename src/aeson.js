@@ -123,32 +123,56 @@ export default class Aeson {
     }
 
     /**
+    * Returns true if the property exists for the given id and key
+    * @param {string} id - the id of the json.
+    * @param {string} key - the key of the property to return.
+    * @returns {boolean} true if the property exists
+    */
+    isPropertySet(id, key) {
+        if (this._map.has(id)){
+            let prop = this._getProp(id, key);
+            return  (prop !== null && prop !== undefined);
+        }
+        else {
+            throw new Error(`No json loaded with following id ${id}`);
+        }
+    }
+
+    _getProp(id, key){
+        let t = key.trim().split(".");
+
+        let properties = this._map.get(id);
+        //console.log('properties = ' + JSON.stringify(properties));
+
+        let x = t[0];
+        //console.log('key = ' + JSON.stringify(key));
+
+        let value = properties[x];
+
+        t.splice(1).forEach((k) => {
+            value = value[k];
+            //console.log('value = ' + value);
+        });
+
+        return value;
+    }
+
+    /**
     * Returns the property value for the given id and key
     * @param {string} id - the id of the json.
     * @param {string} key - the key of the property to return.
     * @param {string} [defaultValue] - a default value in case the key was not set inside the theme.
+    * @returns {string} the value ( or the provided default value) of the property
     */
     getProperty(id, key, defaultValue) {
         if (this._map.has(id)){
-            let t = key.trim().split(".");
-
-            let properties = this._map.get(id);
-            //console.log('properties = ' + JSON.stringify(properties));
-
-            let x = t[0];
-            //console.log('key = ' + JSON.stringify(key));
-
-            let value = properties[x] || defaultValue;
+            let tmp = this._getProp(id, key);
+            let value =  (tmp!== null && tmp!== undefined)? tmp : defaultValue;
             //console.log('value = ' + JSON.stringify(value));
 
-            if (!value){
-                throw new Error('Property was not found and no defaultValue');
+            if (value === null || value === undefined){
+                throw new Error(`Property ${key} was not found in json ${id} and no defaultValue was provided`);
             }
-
-            t.splice(1).forEach((k) => {
-                value = value[k];
-                //console.log('value = ' + value);
-            });
 
             return value;
         }
@@ -156,7 +180,7 @@ export default class Aeson {
             return defaultValue;
         }
         else {
-            throw new Error(`No json load with following id ${id} and no defaultValue`);
+            throw new Error(`No json loaded with following id ${id} and no defaultValue was provided`);
         }
     }
 }

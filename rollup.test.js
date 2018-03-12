@@ -4,10 +4,12 @@ import multiEntry from 'rollup-plugin-multi-entry';
 import resolve from 'rollup-plugin-node-resolve';
 
 export default {
-  entry: 'test/es6/**/*.js',
-  dest: 'test/transpiled/tests.js',
-  format: 'es',
-  sourceMap: false,
+  input: 'test/es6/**/*.js',
+  output: {
+      file: 'test/transpiled/tests.js',
+      format: 'es',
+      sourcemap: false
+  },
   plugins: [
     resolve(),
     multiEntry(),
