@@ -1,6 +1,6 @@
 {
   "name": "aeson",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simple javascript library to dynamically load json properties files",
   "main": "index.js",
   "module": "dist/aeson.es.js",
